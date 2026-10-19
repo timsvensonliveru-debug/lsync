@@ -9,7 +9,8 @@ Your data, kept at home — not on someone else's server.
 
 <p align="center">
   <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-windows.exe"><img alt="Download for Windows" src="assets/download-windows.svg" width="440"></a><br>
-  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-macos-linux.zip"><img alt="Download for macOS · Linux" src="assets/download-macos-linux.svg" width="440"></a><br>
+  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-macos.zip"><img alt="Download for macOS" src="assets/download-macos.svg" width="440"></a><br>
+  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-linux.zip"><img alt="Download for Linux" src="assets/download-linux.svg" width="440"></a><br>
   <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-qnap-umbrel-docker.zip"><img alt="Download for QNAP · Umbrel · Docker" src="assets/download-qnap-umbrel-docker.svg" width="440"></a>
 </p>
 
@@ -44,7 +45,8 @@ The links always lead to the latest version:
 | Where the server runs | Download | How to install |
 |---|---|---|
 | **Windows** (home PC) | [lampa-sync-windows.exe](../../releases/latest/download/lampa-sync-windows.exe) | Run it and follow the wizard |
-| **macOS · Linux** | [lampa-sync-macos-linux.zip](../../releases/latest/download/lampa-sync-macos-linux.zip) | Unzip to `~/lampa-sync`, then in a terminal: `sh install.sh` |
+| **macOS** | [lampa-sync-macos.zip](../../releases/latest/download/lampa-sync-macos.zip) | Unzip to `~/lampa-sync`, then in a terminal: `sh install.sh` |
+| **Linux** | [lampa-sync-linux.zip](../../releases/latest/download/lampa-sync-linux.zip) | Unzip to `~/lampa-sync`, then in a terminal: `sh install.sh` |
 | **QNAP · Umbrel · Docker** | [lampa-sync-qnap-umbrel-docker.zip](../../releases/latest/download/lampa-sync-qnap-umbrel-docker.zip) | Instructions inside; image `ghcr.io/timsvensonliveru-debug/lampa-sync` |
 
 Then in Lampa: **Settings → Extensions → Add plugin** → the address your server shows. A new device is approved
