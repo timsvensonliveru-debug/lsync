@@ -14,7 +14,7 @@ Your data, kept at home — not on someone else's server.
   <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-qnap-umbrel-docker.zip"><img alt="Download for QNAP · Umbrel · Docker" src="assets/download-qnap-umbrel-docker.svg" width="440"></a>
 </p>
 
-[Install](#install) · [How it works](#how-it-works) · [Security](#security) · [All releases](../../releases)
+[How it works](#how-it-works) · [Security](#security) · [All releases](../../releases)
 
 ![Status](https://img.shields.io/badge/status-beta-orange)
 ![Languages](https://img.shields.io/badge/languages-English%20%C2%B7%20Russian-555555)
