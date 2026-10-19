@@ -7,13 +7,16 @@
 Favorites, timestamps, settings, and plugins — the same on your TV, phone, and browser.
 Your data, kept at home — not on someone else's server.
 
-[**Download**](../../releases/latest) · [Install](#install) · [How it works](#how-it-works) · [Security](#security)
+<p align="center">
+  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-windows.exe"><img alt="Download for Windows" src="assets/download-windows.svg" width="440"></a><br>
+  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-macos-linux.zip"><img alt="Download for macOS · Linux" src="assets/download-macos-linux.svg" width="440"></a><br>
+  <a href="https://github.com/timsvensonliveru-debug/lsync/releases/latest/download/lampa-sync-qnap-umbrel-docker.zip"><img alt="Download for QNAP · Umbrel · Docker" src="assets/download-qnap-umbrel-docker.svg" width="440"></a>
+</p>
 
-![Windows](https://img.shields.io/badge/Windows-0078D6?logo=windows&logoColor=white)
-![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
-![Docker](https://img.shields.io/badge/NAS%20%2F%20Docker-2496ED?logo=docker&logoColor=white)
+[Install](#install) · [How it works](#how-it-works) · [Security](#security) · [All releases](../../releases)
+
 ![Status](https://img.shields.io/badge/status-beta-orange)
+![Languages](https://img.shields.io/badge/languages-English%20%C2%B7%20Russian-555555)
 
 </div>
 
@@ -32,16 +35,17 @@ Your data, kept at home — not on someone else's server.
 | 📺 **Remote control** | Works with a TV remote, a mouse, and touch |
 
 Works on your home network and over the internet (a permanent address via Tailscale — no port forwarding).
+The interface is in English and Russian and follows your Lampa language.
 
 ## Install
 
-Grab the files from the [latest release](../../releases/latest):
+The links always lead to the latest version:
 
-| Where the server runs | What to download | How to install |
+| Where the server runs | Download | How to install |
 |---|---|---|
-| **Windows** (home PC) | `lampa-sync-setup-X.Y.Z.exe` | Run it and follow the wizard |
-| **macOS / Linux** | `lampa-sync-X.Y.Z.zip` | Unzip, then in a terminal: `sh install.sh` |
-| **NAS** (QNAP etc.), **Umbrel**, Docker | `lampa-sync-docker-X.Y.Z.zip` | Instructions inside; image `ghcr.io/timsvensonliveru-debug/lampa-sync` |
+| **Windows** (home PC) | [lampa-sync-windows.exe](../../releases/latest/download/lampa-sync-windows.exe) | Run it and follow the wizard |
+| **macOS · Linux** | [lampa-sync-macos-linux.zip](../../releases/latest/download/lampa-sync-macos-linux.zip) | Unzip to `~/lampa-sync`, then in a terminal: `sh install.sh` |
+| **QNAP · Umbrel · Docker** | [lampa-sync-qnap-umbrel-docker.zip](../../releases/latest/download/lampa-sync-qnap-umbrel-docker.zip) | Instructions inside; image `ghcr.io/timsvensonliveru-debug/lampa-sync` |
 
 Then in Lampa: **Settings → Extensions → Add plugin** → the address your server shows. A new device is approved
 in the server's web admin, with a button in Telegram, or via an invite link — which lets it in right away.
