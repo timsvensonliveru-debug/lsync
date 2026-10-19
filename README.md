@@ -53,8 +53,8 @@ The server updates itself (at night) — and only installs versions signed by th
 ```text
   TV / phone / browser                      Your home server
   ┌──────────────────────┐                 ┌───────────────────────────────┐
-  │ Lampa + lsync loader │ ◄── https ────► │ lsync: favorites, timestamps,  │
-  │                      │                 │ settings, plugins              │
+  │ Lampa + lsync loader │ ◄── https ────► │ lsync: favorites, timestamps, │
+  │                      │                 │ settings, plugins             │
   └──────────────────────┘                 │ web admin · Telegram bot      │
                                            └───────────────────────────────┘
 ```
