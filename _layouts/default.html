@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lsync — self-hosted sync for Lampa</title>
+<meta name="description" content="{{ site.description | escape }}">
+<meta property="og:title" content="lsync">
+<meta property="og:description" content="{{ site.description | escape }}">
+<meta name="theme-color" content="#0d1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b8cff'/%3E%3Cpath d='M9 21l7-10 7 10' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-soft: #131a24;
+  --card: #161d29;
+  --line: #263041;
+  --text: #d7dde8;
+  --muted: #8b96a8;
+  --head: #f2f5fa;
+  --accent: #5b8cff;
+  --accent-2: #8b5cf6;
+  --code: #0a0e14;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── шапка сайта ── */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(13, 17, 23, .85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top-in { max-width: 960px; margin: 0 auto; padding: 0 16px; height: 56px; display: flex; align-items: center; gap: 24px; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--head); font-weight: 700; font-size: 18px; letter-spacing: .2px; }
+.logo:hover { text-decoration: none; }
+.logo i {
+  width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); font-style: normal; color: #fff; font-size: 15px;
+}
+.nav { display: flex; gap: 20px; margin-left: auto; font-size: 15px; }
+.nav a { color: var(--muted); }
+.nav a:hover { color: var(--head); text-decoration: none; }
+.nav .gh { color: var(--head); border: 1px solid var(--line); padding: 5px 12px; border-radius: 8px; }
+.nav .gh:hover { border-color: var(--accent); }
+@media (max-width: 640px) { .nav a:not(.gh) { display: none; } }
+
+/* ── содержимое (README) ── */
+main { max-width: 960px; margin: 0 auto; padding: 0 16px 64px; }
+h1, h2, h3 { color: var(--head); line-height: 1.25; }
+h2 { font-size: 26px; margin: 56px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+h3 { font-size: 19px; margin: 28px 0 10px; }
+p, ul { margin: 0 0 16px; }
+li { margin: 4px 0; }
+strong { color: var(--head); }
+hr { border: 0; height: 1px; background: var(--line); margin: 40px 0; }
+sub { color: var(--muted); font-size: 13px; }
+
+/* шапка README (<div align="center">) — главный экран */
+main > div[align="center"]:first-child {
+  margin: 0 -16px; padding: 72px 16px 40px;
+  background:
+    radial-gradient(600px 260px at 50% 0, rgba(91, 140, 255, .22), transparent 70%),
+    radial-gradient(500px 220px at 80% 30%, rgba(139, 92, 246, .14), transparent 70%);
+}
+main > div[align="center"]:first-child h1 {
+  font-size: clamp(44px, 9vw, 72px); margin: 0 0 8px; letter-spacing: -1.5px;
+  background: linear-gradient(135deg, #fff 30%, #a9c1ff); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+main > div[align="center"]:first-child p { max-width: 620px; margin-left: auto; margin-right: auto; }
+main > div[align="center"]:first-child p:nth-of-type(1) { font-size: 21px; color: var(--head); }
+main > div[align="center"]:first-child p:nth-of-type(2) { color: var(--muted); font-size: 17px; }
+main > div[align="center"]:first-child p:nth-of-type(3) a {
+  display: inline-block; margin: 4px 2px; padding: 8px 16px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--card); color: var(--head);
+}
+main > div[align="center"]:first-child p:nth-of-type(3) a:first-child {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent;
+}
+main > div[align="center"]:first-child p:nth-of-type(3) a:hover { text-decoration: none; filter: brightness(1.12); }
+main > div[align="center"]:first-child img { vertical-align: middle; margin: 2px; }
+main > div[align="center"]:first-child + hr { display: none; }
+
+/* таблицы */
+table {
+  display: block; overflow-x: auto; width: 100%; border-collapse: separate; border-spacing: 0;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin: 0 0 20px;
+}
+th, td { padding: 12px 16px; text-align: left; vertical-align: middle; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { color: var(--muted); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: .5px; }
+td:first-child { white-space: nowrap; }
+td img { max-width: 100%; height: auto; display: block; }
+
+/* код */
+code { font: 14px/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace; }
+:not(pre) > code { background: var(--bg-soft); border: 1px solid var(--line); padding: 1px 6px; border-radius: 6px; color: #e6edf3; }
+pre {
+  background: var(--code); border: 1px solid var(--line); border-radius: 12px;
+  padding: 18px 20px; overflow-x: auto; margin: 0 0 20px; color: #b9c6dc;
+}
+pre code { background: none; border: 0; padding: 0; }
+div.highlight, figure.highlight { margin: 0; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer .in { max-width: 960px; margin: 0 auto; padding: 24px 16px; display: flex; gap: 16px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="logo" href="{{ '/' | relative_url }}"><i>▲</i>lsync</a>
+  <nav class="nav">
+    <a href="#install">Install</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#security">Security</a>
+    <a href="{{ site.repo_url }}/releases">Releases</a>
+    <a class="gh" href="{{ site.repo_url }}">GitHub</a>
+  </nav>
+</div></header>
+<main>
+{{ content | replace: 'href="../../', 'href="https://github.com/timsvensonliveru-debug/lsync/' }}
+</main>
+<footer><div class="in">
+  <span>lsync — self-hosted sync for Lampa</span>
+  <a href="{{ site.repo_url }}/releases/latest">Latest release</a>
+  <a href="{{ site.repo_url }}/issues/new">Report an issue</a>
+</div></footer>
+<script>
+// пустая строка-заголовок таблицы (| | | в README) — убрать
+document.querySelectorAll('thead').forEach(function (h) { if (!h.textContent.trim()) h.remove(); });
+</script>
+</body>
+</html>

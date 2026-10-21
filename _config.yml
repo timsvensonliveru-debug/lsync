@@ -1,0 +1,13 @@
+# Сайт lsync (GitHub Pages): README.md → главная в тёмной теме _layouts/default.html.
+# README правится как обычно — сайт пересобирается сам. l.js кладёт выпуск lampa-sync и Jekyll отдаёт его как есть.
+title: lsync
+description: "Self-hosted sync server for Lampa: favorites, timestamps, settings, and plugins on all your devices. Your data, kept at home."
+repo_url: https://github.com/timsvensonliveru-debug/lsync
+markdown: kramdown
+kramdown:
+  input: GFM
+  parse_block_html: true   # markdown внутри <div align="center"> (шапка README) — тоже разметка, а не сырой текст
+  hard_wrap: false
+defaults:
+  - scope: { path: "" }
+    values: { layout: default }
