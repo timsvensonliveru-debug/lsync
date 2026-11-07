@@ -1,0 +1,63 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lsync</title>
+<meta name="description" content="Свой сервер синхронизации для Lampa: избранное, таймкоды, настройки и плагины на всех устройствах. Self-hosted sync server for Lampa.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="versions">
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/logo.svg" alt="">lsync</a>
+    <nav class="nav">
+      <a href="./#features" data-i18n="nav.features"></a>
+      <a href="./#install" data-i18n="nav.install"></a>
+      <a href="./#how" data-i18n="nav.how"></a>
+      <a href="./#security" data-i18n="nav.security"></a>
+      <a href="versions.html" data-i18n="nav.versions" class="on"></a>
+    </nav>
+    <div class="tools">
+      <div class="lang"><button data-lang="ru">RU</button><button data-lang="en">EN</button></div>
+      <a class="btn" href="#" data-feedback><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span class="fb-label" data-i18n="fb"></span></a>
+      <a class="btn icon-btn" href="https://github.com/timsvensonliveru-debug/lsync" aria-label="GitHub"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="btn icon-btn menu-btn" data-i18n-label="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="v.title"></h2>
+      <p class="section-sub" data-i18n="v.sub"></p>
+      <div id="releases"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="foot.note"></span>
+    <span><a href="versions.html" data-i18n="nav.versions"></a> · <a href="#" data-feedback data-i18n="fb"></a> · <a href="https://github.com/timsvensonliveru-debug/lsync">GitHub</a></span>
+  </div>
+</footer>
+
+<dialog id="feedback">
+  <button class="dialog-close" aria-label="×">×</button>
+  <h2 data-i18n="fbd.title"></h2>
+  <p class="muted" data-i18n="fbd.sub"></p>
+  <div class="fb-list">
+    <a class="fb-item" id="fb-bug" target="_blank" rel="noopener"><b data-i18n="fbd.bug.t"></b><span data-i18n="fbd.bug.d"></span></a>
+    <a class="fb-item" id="fb-idea" target="_blank" rel="noopener"><b data-i18n="fbd.idea.t"></b><span data-i18n="fbd.idea.d"></span></a>
+    <a class="fb-item" id="fb-all" target="_blank" rel="noopener"><b data-i18n="fbd.all.t"></b><span data-i18n="fbd.all.d"></span></a>
+  </div>
+</dialog>
+<script src="assets/site.js"></script>
+</body>
+</html>
