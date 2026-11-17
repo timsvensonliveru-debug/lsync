@@ -4,6 +4,7 @@
   var REPO = 'timsvensonliveru-debug/lsync';
   var GH = 'https://github.com/' + REPO;
   var DL = GH + '/releases/latest/download/';
+  var LOADER = 'https://' + REPO.split('/')[0] + '.github.io/lsync/l.js';  // постоянный адрес загрузчика
   var FILES = {
     windows: 'lampa-sync-windows.exe',
     macos: 'lampa-sync-macos.zip',
@@ -44,6 +45,9 @@
         'Инструкция — <code>ИНСТРУКЦИЯ.md</code> внутри архива, образ <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Дальше в Lampa:</b> «Настройки → Расширения → Добавить плагин» и адрес, который показывает ваш сервер. ' +
         'Новое устройство подтверждается в веб-админке сервера, кнопкой в Telegram или сразу — по ссылке-приглашению.',
+      'i.loader': '<b>Плагин, не привязанный к серверу:</b> <code>' + LOADER + '</code> — постоянный адрес загрузчика lsync. ' +
+        'Адрес сервера в нём не задан: нажмите «Подключить через Telegram» (адрес найдётся в группе семьи) или введите его ' +
+        'в «Настройки → Синхронизация → Адрес сервера». Без сервера — режим «Только backup»: копия настроек в вашем Telegram.',
       'i.update': 'Сервер обновляется сам, по ночам, и ставит только версии, подписанные автором.',
       'h.title': 'Как это работает', 'h.sub': 'Lampa на ваших устройствах разговаривает с вашим же сервером — больше ни с кем.',
       'h.dev.t': 'Телевизор · телефон · браузер', 'h.dev.d': 'Lampa и маленький плагин-загрузчик lsync',
@@ -105,6 +109,9 @@
         'Instructions are in <code>INSTRUCTIONS.md</code> inside the archive; image <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Then in Lampa:</b> Settings → Extensions → Add plugin, and enter the address your server shows. ' +
         'Approve a new device in the server\'s web admin, with a button in Telegram, or instantly with an invite link.',
+      'i.loader': '<b>A plugin not tied to a server:</b> <code>' + LOADER + '</code> is the permanent address of the lsync loader. ' +
+        'It has no server address: press “Connect via Telegram” (the address is found in your family group) or enter it ' +
+        'in Settings → Synchronization → Server address. No server? Use “Backup only” mode: a copy of your settings in your Telegram.',
       'i.update': 'The server updates itself at night and installs only versions signed by the author.',
       'h.title': 'How it works', 'h.sub': 'Lampa on your devices talks to your own server — and nobody else.',
       'h.dev.t': 'TV · phone · browser', 'h.dev.d': 'Lampa and the small lsync loader plugin',
