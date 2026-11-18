@@ -4,7 +4,7 @@
   var REPO = 'timsvensonliveru-debug/lsync';
   var GH = 'https://github.com/' + REPO;
   var DL = GH + '/releases/latest/download/';
-  var LOADER = 'https://' + REPO.split('/')[0] + '.github.io/lsync/l.js';  // постоянный адрес загрузчика
+  var LOADER = 'https://' + REPO.split('/')[0] + '.github.io/lsync/l.js';  // постоянный адрес мини-плагина
   var FILES = {
     windows: 'lampa-sync-windows.exe',
     macos: 'lampa-sync-macos.zip',
@@ -45,15 +45,15 @@
         'Инструкция — <code>ИНСТРУКЦИЯ.md</code> внутри архива, образ <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Дальше в Lampa:</b> «Настройки → Расширения → Добавить плагин» и адрес, который показывает ваш сервер. ' +
         'Новое устройство подтверждается в веб-админке сервера, кнопкой в Telegram или сразу — по ссылке-приглашению.',
-      'i.loader.t': 'Адрес плагина для Lampa', 'i.loader.copy': 'Скопировать', 'i.loader.ok': 'Скопировано',
-      'i.loader': 'Постоянный адрес загрузчика lsync: «Настройки → Расширения → Добавить плагин». Адреса сервера в нём нет: ' +
-        'нажмите «Подключить через Telegram» (адрес найдётся в группе семьи) или введите его в «Синхронизация → Адрес ' +
-        'сервера». Без сервера — режим «Только backup»: копия настроек в вашем Telegram.',
+      'mini.t': 'Мини-плагин синхронизации', 'i.loader.copy': 'Скопировать', 'i.loader.ok': 'Скопировано',
+      'mini.how': 'В Lampa: «Настройки → Расширения → Добавить плагин» — вставьте адрес.',
       'i.update': 'Сервер обновляется сам, по ночам, и ставит только версии, подписанные автором.',
       'h.title': 'Как это работает', 'h.sub': 'Lampa на ваших устройствах разговаривает с вашим же сервером — больше ни с кем.',
-      'h.dev.t': 'Телевизор · телефон · браузер', 'h.dev.d': 'Lampa и маленький плагин-загрузчик lsync',
+      'h.dev.t': 'Телевизор · телефон · браузер', 'h.dev.d': 'Lampa и мини-плагин lsync',
       'h.srv.t': 'Ваш домашний сервер', 'h.srv.d': 'Избранное, таймкоды, настройки, плагины. Веб-админка и Telegram-бот',
-      'h.l1': '<b>Загрузчик</b> — маленький плагин для Lampa: входит на ваш сервер и получает от него основную часть, подписанную автором.',
+      'h.l1': '<b>Мини-плагин</b> — маленький плагин для Lampa. Сам по себе он только делает резервную копию настроек и ' +
+        'восстанавливает её через ваш Telegram, а ещё содержит инструкцию по установке своего сервера синхронизации. ' +
+        'С сервером — входит на него и получает основную часть, подписанную автором.',
       'h.l2': '<b>Сервер</b> — ваш. Без него Lampa работает как обычно, а изменения дойдут, когда сервер снова будет доступен.',
       'h.l3': '<b>Telegram</b> — по желанию: бот подтверждает вход новых устройств и раз в сутки присылает копию базы в вашу группу.',
       's.title': 'Безопасность',
@@ -111,15 +111,15 @@
         'Instructions are in <code>INSTRUCTIONS.md</code> inside the archive; image <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Then in Lampa:</b> Settings → Extensions → Add plugin, and enter the address your server shows. ' +
         'Approve a new device in the server\'s web admin, with a button in Telegram, or instantly with an invite link.',
-      'i.loader.t': 'Plugin address for Lampa', 'i.loader.copy': 'Copy', 'i.loader.ok': 'Copied',
-      'i.loader': 'The permanent address of the lsync loader: Settings → Extensions → Add plugin. It has no server address: ' +
-        'press “Connect via Telegram” (the address is found in your family group) or enter it in Synchronization → ' +
-        'Server address. No server? Use “Backup only” mode: a copy of your settings in your Telegram.',
+      'mini.t': 'Sync mini-plugin', 'i.loader.copy': 'Copy', 'i.loader.ok': 'Copied',
+      'mini.how': 'In Lampa: Settings → Extensions → Add plugin — paste the address.',
       'i.update': 'The server updates itself at night and installs only versions signed by the author.',
       'h.title': 'How it works', 'h.sub': 'Lampa on your devices talks to your own server — and nobody else.',
-      'h.dev.t': 'TV · phone · browser', 'h.dev.d': 'Lampa and the small lsync loader plugin',
+      'h.dev.t': 'TV · phone · browser', 'h.dev.d': 'Lampa and the lsync mini-plugin',
       'h.srv.t': 'Your home server', 'h.srv.d': 'Favorites, watch progress, settings, plugins. Web admin and Telegram bot',
-      'h.l1': '<b>Loader</b> — a small Lampa plugin: it signs in to your server and gets the main part from it, signed by the author.',
+      'h.l1': '<b>Mini-plugin</b> — a small Lampa plugin. On its own it only backs up your settings and restores them ' +
+        'via your Telegram, and it includes instructions for installing your own sync server. With a server, it signs ' +
+        'in to it and gets the main part, signed by the author.',
       'h.l2': '<b>Server</b> — yours. Without it Lampa works as usual, and changes arrive once the server is reachable again.',
       'h.l3': '<b>Telegram</b> — optional: the bot approves new devices and sends a daily database backup to your group.',
       's.title': 'Security',
@@ -342,7 +342,8 @@
     code.textContent = LOADER;
     if (!btn) return;
     btn.addEventListener('click', function () {
-      function done() { btn.textContent = t('i.loader.ok'); setTimeout(function () { btn.textContent = t('i.loader.copy'); }, 1500); }
+      var label = btn.querySelector('.mini-copy') || btn;
+      function done() { label.textContent = t('i.loader.ok'); setTimeout(function () { label.textContent = t('i.loader.copy'); }, 1500); }
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(LOADER).then(done, function () {});
       } catch (e) {}

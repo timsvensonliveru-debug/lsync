@@ -134,10 +134,14 @@ h3 { color: var(--head); font-size: 18px; margin: 0 0 6px; }
 .list b { color: var(--head); }
 
 /* версии */
-.loader-card { margin-top: 16px; }
-.loader-card h3 { margin: 0 0 10px; }
-.loader-url { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
-.loader-url code { font-size: 15px; padding: 6px 10px; word-break: break-all; }
+.mini { margin: 22px auto 26px; max-width: 640px; }
+.mini-title { font-weight: 700; font-size: 17px; color: var(--head); margin-bottom: 10px; }
+.mini-url { display: inline-flex; align-items: center; gap: 12px; max-width: 100%; cursor: pointer; font: inherit;
+  background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px 8px 12px; }
+.mini-url:hover { border-color: var(--accent); }
+.mini-url code { background: none; border: 0; padding: 0; font-size: 15px; word-break: break-all; text-align: left; }
+.mini-copy { flex: none; font-weight: 600; font-size: 14px; color: var(--accent); }
+.mini-how { margin-top: 10px; color: var(--muted); font-size: 14px; }
 .rel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px; }
 .rel-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .rel-head h3 { margin: 0; font-size: 20px; }
