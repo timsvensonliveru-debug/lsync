@@ -1,8 +1,8 @@
-/* lsync loader v0.31 — загрузчик lampa-sync. tweetnacl-js 1.0.3 (public domain) — проверка подписи */
+/* lsync loader v0.32 — загрузчик lampa-sync. tweetnacl-js 1.0.3 (public domain) — проверка подписи */
 (function () {
 'use strict';
 if (window.lsync_loader) return;
-var LOADER_CONFIG = {"version": "0.31", "author_key": "2ee650d7c63993e1a8c24f65f207bd142a9435cc62da2bf10300ad8a6787f50d", "default_server": "", "invite": "", "install_url": "https://timsvensonliveru-debug.github.io/lsync/#install", "home_url": "https://timsvensonliveru-debug.github.io/lsync/l.js", "min_server": "0.36.0", "min_main": "0.39.1", "tg": {"api_id": 38102940, "api_hash": "b5fd81db3f6f5d1cca5389580edd0e45", "gramjs_url": "https://cdn.jsdelivr.net/gh/lampame/TGSBundle@653586b3ffec2f9003ec7e1806b5c2e41224eb64/telegram.min.js", "gramjs_sha512": "42a103a3111ad46d877b6383a9b7529ed7ec89feace7e67d85756792d59332465ed7d0d593e463b10cab0df31f04eba28356873dc25c7879e5f834953fe85230"}};
+var LOADER_CONFIG = {"version": "0.32", "author_key": "2ee650d7c63993e1a8c24f65f207bd142a9435cc62da2bf10300ad8a6787f50d", "default_server": "", "invite": "", "install_url": "https://timsvensonliveru-debug.github.io/lsync/#install", "home_url": "https://timsvensonliveru-debug.github.io/lsync/l.js", "min_server": "0.36.0", "min_main": "0.39.1", "tg": {"api_id": 38102940, "api_hash": "b5fd81db3f6f5d1cca5389580edd0e45", "gramjs_url": "https://cdn.jsdelivr.net/gh/lampame/TGSBundle@653586b3ffec2f9003ec7e1806b5c2e41224eb64/telegram.min.js", "gramjs_sha512": "42a103a3111ad46d877b6383a9b7529ed7ec89feace7e67d85756792d59332465ed7d0d593e463b10cab0df31f04eba28356873dc25c7879e5f834953fe85230"}};
 var LOADER_MARK = "lsync loader";
 var module;
 var self = { crypto: window.crypto || window.msCrypto };
