@@ -45,9 +45,10 @@
         'Инструкция — <code>ИНСТРУКЦИЯ.md</code> внутри архива, образ <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Дальше в Lampa:</b> «Настройки → Расширения → Добавить плагин» и адрес, который показывает ваш сервер. ' +
         'Новое устройство подтверждается в веб-админке сервера, кнопкой в Telegram или сразу — по ссылке-приглашению.',
-      'i.loader': '<b>Плагин, не привязанный к серверу:</b> <code>' + LOADER + '</code> — постоянный адрес загрузчика lsync. ' +
-        'Адрес сервера в нём не задан: нажмите «Подключить через Telegram» (адрес найдётся в группе семьи) или введите его ' +
-        'в «Настройки → Синхронизация → Адрес сервера». Без сервера — режим «Только backup»: копия настроек в вашем Telegram.',
+      'i.loader.t': 'Адрес плагина для Lampa', 'i.loader.copy': 'Скопировать', 'i.loader.ok': 'Скопировано',
+      'i.loader': 'Постоянный адрес загрузчика lsync: «Настройки → Расширения → Добавить плагин». Адреса сервера в нём нет: ' +
+        'нажмите «Подключить через Telegram» (адрес найдётся в группе семьи) или введите его в «Синхронизация → Адрес ' +
+        'сервера». Без сервера — режим «Только backup»: копия настроек в вашем Telegram.',
       'i.update': 'Сервер обновляется сам, по ночам, и ставит только версии, подписанные автором.',
       'h.title': 'Как это работает', 'h.sub': 'Lampa на ваших устройствах разговаривает с вашим же сервером — больше ни с кем.',
       'h.dev.t': 'Телевизор · телефон · браузер', 'h.dev.d': 'Lampa и маленький плагин-загрузчик lsync',
@@ -73,9 +74,10 @@
       'v.title': 'Версии',
       'v.sub': 'Все выпуски lsync. Сервер обновляется сам — скачивать вручную нужно только для новой установки.',
       'v.loading': 'Загружаю список версий…',
-      'v.error': 'Не удалось загрузить список. Он есть и на <a href="' + GH + '/releases">GitHub</a>.',
+      'v.error': 'Не удалось загрузить список версий — попробуйте обновить страницу позже.',
+      'v.more': 'Показать более старые', 'v.sub2': '',
       'v.latest': 'последняя', 'v.nofiles': 'Файлов нет',
-      'v.win': 'Windows', 'v.unix': 'macOS · Linux', 'v.nas': 'QNAP · Umbrel · Docker'
+      'v.win': 'Windows', 'v.unix': 'macOS · Linux', 'v.nas': 'QNAP · Umbrel · Docker', 'v.mac': 'macOS', 'v.lin': 'Linux'
     },
     en: {
       'title.index': 'lsync — your own sync server for Lampa',
@@ -109,9 +111,10 @@
         'Instructions are in <code>INSTRUCTIONS.md</code> inside the archive; image <code>ghcr.io/' + REPO.split('/')[0] + '/lampa-sync</code>.',
       'i.after': '<b>Then in Lampa:</b> Settings → Extensions → Add plugin, and enter the address your server shows. ' +
         'Approve a new device in the server\'s web admin, with a button in Telegram, or instantly with an invite link.',
-      'i.loader': '<b>A plugin not tied to a server:</b> <code>' + LOADER + '</code> is the permanent address of the lsync loader. ' +
-        'It has no server address: press “Connect via Telegram” (the address is found in your family group) or enter it ' +
-        'in Settings → Synchronization → Server address. No server? Use “Backup only” mode: a copy of your settings in your Telegram.',
+      'i.loader.t': 'Plugin address for Lampa', 'i.loader.copy': 'Copy', 'i.loader.ok': 'Copied',
+      'i.loader': 'The permanent address of the lsync loader: Settings → Extensions → Add plugin. It has no server address: ' +
+        'press “Connect via Telegram” (the address is found in your family group) or enter it in Synchronization → ' +
+        'Server address. No server? Use “Backup only” mode: a copy of your settings in your Telegram.',
       'i.update': 'The server updates itself at night and installs only versions signed by the author.',
       'h.title': 'How it works', 'h.sub': 'Lampa on your devices talks to your own server — and nobody else.',
       'h.dev.t': 'TV · phone · browser', 'h.dev.d': 'Lampa and the small lsync loader plugin',
@@ -137,9 +140,10 @@
       'v.title': 'Releases',
       'v.sub': 'Every lsync release. The server updates itself — manual downloads are only needed for a new install.',
       'v.loading': 'Loading releases…',
-      'v.error': 'Couldn\'t load the list. It is also on <a href="' + GH + '/releases">GitHub</a>.',
+      'v.error': 'Couldn\'t load the list of releases — try reloading the page later.',
+      'v.more': 'Show older releases', 'v.sub2': '',
       'v.latest': 'latest', 'v.nofiles': 'No files',
-      'v.win': 'Windows', 'v.unix': 'macOS · Linux', 'v.nas': 'QNAP · Umbrel · Docker'
+      'v.win': 'Windows', 'v.unix': 'macOS · Linux', 'v.nas': 'QNAP · Umbrel · Docker', 'v.mac': 'macOS', 'v.lin': 'Linux'
     }
   };
   var OS_NAMES = { windows: 'Windows', macos: 'macOS', linux: 'Linux', nas: 'QNAP · Umbrel · Docker' };
@@ -236,23 +240,27 @@
   var releases = null;
   var releasesFailed = false;
 
-  function fileLabel(name) {
-    if (/\.exe$/i.test(name)) return t('v.win');
-    if (/docker|qnap|umbrel/i.test(name)) return t('v.nas');
-    if (/macos/i.test(name)) return 'macOS';
-    if (/linux/i.test(name)) return 'Linux';
-    return t('v.unix');
-  }
-  function fileRank(name) {
-    if (/\.exe$/i.test(name)) return 0;
-    if (/docker|qnap|umbrel/i.test(name)) return 2;
-    return 1;
-  }
   function fmtDate(iso) {
     try { return new Date(iso).toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
     catch (e) { return iso.slice(0, 10); }
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // В выпуске, кроме файлов для людей, — служебные (архив самообновления сервера, установщик и образ с номером версии):
+  // показываем ровно те 4, что и кнопки на главной, и только реально приложенные к этому выпуску (18.11).
+  var USER_FILES = [[FILES.windows, 'v.win'], [FILES.macos, 'v.mac'], [FILES.linux, 'v.lin'], [FILES.nas, 'v.nas']];
+  var RELEASES_SHOWN = 5;
+  var releasesAll = false;
+
+  function userFiles(r) {
+    var out = [];
+    for (var u = 0; u < USER_FILES.length; u++) {
+      for (var j = 0; j < r.assets.length; j++) {
+        if (r.assets[j].name === USER_FILES[u][0]) out.push({ url: r.assets[j].browser_download_url, label: t(USER_FILES[u][1]) });
+      }
+    }
+    return out;
+  }
 
   function renderReleases() {
     var box = document.getElementById('releases');
@@ -260,26 +268,28 @@
     if (releasesFailed) { box.innerHTML = '<p class="muted">' + t('v.error') + '</p>'; return; }
     if (!releases) { box.innerHTML = '<p class="muted">' + t('v.loading') + '</p>'; return; }
     var html = '';
+    var shown = 0;
+    var hidden = 0;
     for (var i = 0; i < releases.length; i++) {
       var r = releases[i];
       if (r.draft) continue;
-      var ver = String(r.tag_name).replace(/^v/, '');
-      // в выпуске два набора одних и тех же сборок: «всегда последняя» и с номером версии — показываем с номером
-      var files = [];
-      for (var j = 0; j < r.assets.length; j++) if (r.assets[j].name.indexOf(ver) >= 0) files.push(r.assets[j]);
-      if (!files.length) files = r.assets;
-      files = files.slice().sort(function (a, b) { return fileRank(a.name) - fileRank(b.name); });  // Windows первой
+      var files = userFiles(r);
+      if (!files.length) continue;  // выпуск без файлов для скачивания — не показываем
+      if (!releasesAll && shown >= RELEASES_SHOWN) { hidden++; continue; }
       html += '<div class="rel"><div class="rel-head"><h3>' + esc(r.tag_name) + '</h3>' +
         '<span class="rel-date">' + esc(fmtDate(r.published_at)) + '</span>' +
-        (i === 0 ? '<span class="tag-latest">' + t('v.latest') + '</span>' : '') + '</div><div class="rel-files">';
-      if (!files.length) html += '<span class="muted">' + t('v.nofiles') + '</span>';
-      for (j = 0; j < files.length; j++) {
-        html += '<a class="btn" href="' + esc(files[j].browser_download_url) + '">' + ICON.download +
-          esc(fileLabel(files[j].name)) + '</a>';
+        (shown === 0 ? '<span class="tag-latest">' + t('v.latest') + '</span>' : '') + '</div><div class="rel-files">';
+      for (var j = 0; j < files.length; j++) {
+        html += '<a class="btn" href="' + esc(files[j].url) + '">' + ICON.download + esc(files[j].label) + '</a>';
       }
       html += '</div></div>';
+      shown++;
     }
+    if (!shown) html = '<p class="muted">' + t('v.nofiles') + '</p>';
+    if (hidden) html += '<p><button class="btn" id="rel-more">' + t('v.more') + ' (' + hidden + ')</button></p>';
     box.innerHTML = html;
+    var more = document.getElementById('rel-more');
+    if (more) more.addEventListener('click', function () { releasesAll = true; renderReleases(); });
   }
   function loadReleases() {
     if (!document.getElementById('releases')) return;
@@ -325,7 +335,27 @@
     if (tabs.length) show(detectOs() || 'windows');
   }
 
+  function setupLoaderCard() {
+    var code = document.getElementById('loader-url');
+    var btn = document.getElementById('loader-copy');
+    if (!code) return;
+    code.textContent = LOADER;
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      function done() { btn.textContent = t('i.loader.ok'); setTimeout(function () { btn.textContent = t('i.loader.copy'); }, 1500); }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(LOADER).then(done, function () {});
+      } catch (e) {}
+      try {  // запасной путь: выделить и скопировать
+        var r = document.createRange(); r.selectNodeContents(code);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        if (document.execCommand('copy')) done();
+      } catch (e) {}
+    });
+  }
+
   function setup() {
+    setupLoaderCard();
     var i, btns = document.querySelectorAll('.lang button');
     for (i = 0; i < btns.length; i++) {
       btns[i].addEventListener('click', function () {

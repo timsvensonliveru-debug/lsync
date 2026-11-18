@@ -134,6 +134,10 @@ h3 { color: var(--head); font-size: 18px; margin: 0 0 6px; }
 .list b { color: var(--head); }
 
 /* версии */
+.loader-card { margin-top: 16px; }
+.loader-card h3 { margin: 0 0 10px; }
+.loader-url { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+.loader-url code { font-size: 15px; padding: 6px 10px; word-break: break-all; }
 .rel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px; }
 .rel-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .rel-head h3 { margin: 0; font-size: 20px; }
